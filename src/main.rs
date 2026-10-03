@@ -4,7 +4,21 @@ fn main() {
 }
 
 fn process(_text: &mut String) -> &str {
-    todo!("исправьте заимствования и реализуйте process");
+    let (start, end) = match _text.split_whitespace().next() {
+        Some(word) => {
+            let start = match _text.find(word) {
+                Some(start) => start,
+                None => 0,
+            };
+
+            (start, start + word.len())
+        }
+        None => (0, 0),
+    };
+
+    _text.push('!');
+
+    return &_text[start..end];
 }
 
 #[cfg(test)]
